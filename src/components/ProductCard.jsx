@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { useCart } from "../utils/CartContext";
 
 const ProductCard = ({ product }) => {
   const { addItem } = useCart();
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
+  const handleImageError = () => {
+    setImageLoading(false);
+    setImageError(true);
+  };
 
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={product.image} alt={product.name} />
+        {imageLoading && (
+          <div className="image-placeholder">
+            <div className="loading-spinner product-spinner"></div>
+          </div>
+        )}
+        <img
+          src={product.image}
+          alt={product.name}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          style={{ display: imageLoading ? "none" : "block" }}
+          className={imageError ? "image-error" : ""}
+        />
+        {imageError && (
+          <div className="image-error-placeholder">
+            <span className="material-symbols-outlined image-error-icon">
+              image_not_supported
+            </span>
+          </div>
+        )}
       </div>
       <div className="product-info">
         <h3>{product.name}</h3>

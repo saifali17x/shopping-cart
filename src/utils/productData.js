@@ -1,3 +1,7 @@
+/**
+ * Static product data used as a fallback when the API request fails
+ * This ensures the application can still function even if the API is unavailable
+ */
 const products = [
   {
     id: 1,
