@@ -1,6 +1,6 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import AppRoutes from "./components/Routes";
 import { CartProvider } from "./utils/CartContext";
 import "./styles/App.css";
 
@@ -10,7 +10,7 @@ const App = () => {
       <div className="app-container">
         <Navbar />
         <main className="main-content">
-          <AppRoutes />
+          <Outlet />
         </main>
         <footer className="footer">
           <p>

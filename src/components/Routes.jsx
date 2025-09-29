@@ -1,19 +1,34 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import ShopPage from "./ShopPage";
 import CartPage from "./Cartpage";
 import ErrorPage from "./ErrorPage";
+import App from "../App";
 
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/shop" element={<ShopPage />} />
-      <Route path="/cart" element={<CartPage />} />
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
-  );
-};
+/**
+ * Routes configuration for the application using the
+ * Data Router approach (createBrowserRouter)
+ */
+const routes = [
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Homepage />,
+      },
+      {
+        path: "shop",
+        element: <ShopPage />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
+      },
+    ],
+  },
+];
 
-export default AppRoutes;
+export default routes;

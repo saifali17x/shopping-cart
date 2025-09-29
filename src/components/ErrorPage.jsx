@@ -1,16 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import Button from "./Button";
+import Navbar from "./Navbar";
+import { CartProvider } from "../utils/CartContext";
 
 const ErrorPage = () => {
+  const error = useRouteError();
+  console.error(error);
+
   return (
-    <div className="error-page">
-      <h1>404 - Page Not Found</h1>
-      <p>Oops! The page you're looking for doesn't exist.</p>
-      <Link to="/">
-        <Button>Go back home</Button>
-      </Link>
-    </div>
+    <CartProvider>
+      <div className="app-container">
+        <Navbar />
+        <main className="main-content">
+          <div className="error-page">
+            <h1>Oops!</h1>
+            <p>Sorry, an unexpected error has occurred.</p>
+            <p className="error-message">
+              {error.statusText || error.message || "Page not found"}
+            </p>
+            <Link to="/">
+              <Button>Go back home</Button>
+            </Link>
+          </div>
+        </main>
+        <footer className="footer">
+          <p>
+            &copy; {new Date().getFullYear()} Shopping Cart. All rights
+            reserved.
+          </p>
+        </footer>
+      </div>
+    </CartProvider>
   );
 };
 
