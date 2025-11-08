@@ -5,7 +5,7 @@ export default function Button({
   onClick,
   type = "button",
   ariaLabel,
-  className,
+  className = "",
   variant = "primary", // primary, secondary, accent, outline
   size = "medium", // small, medium, large
   disabled = false,
@@ -40,15 +40,46 @@ export default function Button({
   };
 
   const getButtonClasses = () => {
-    const baseClass = "btn";
-    const variantClass = variant !== "primary" ? `btn-${variant}` : "";
-    const sizeClass = size !== "medium" ? `btn-${size}` : "";
-    const rippleClass = "ripple";
-    const customClass = className || "";
+    let baseClasses =
+      "relative overflow-hidden font-semibold cursor-pointer transition-all duration-200 inline-flex items-center gap-2 rounded-lg border-none no-underline";
 
-    return [baseClass, variantClass, sizeClass, rippleClass, customClass]
-      .filter(Boolean)
-      .join(" ");
+    // Size variants
+    const sizeClasses = {
+      small: "px-4 py-2 text-sm",
+      medium: "px-6 py-3 text-base",
+      large: "px-8 py-4 text-lg",
+    };
+
+    return `${baseClasses} ${sizeClasses[size]} ${className}`;
+  };
+
+  const getButtonStyle = () => {
+    const baseStyle = {
+      boxShadow: "0 2px 8px rgba(62, 47, 47, 0.1)",
+    };
+
+    // Color variants
+    const variantStyles = {
+      primary: {
+        backgroundColor: "var(--coral)",
+        color: "white",
+      },
+      secondary: {
+        backgroundColor: "var(--sunny)",
+        color: "var(--chocolate)",
+      },
+      accent: {
+        backgroundColor: "var(--tangerine)",
+        color: "white",
+      },
+      outline: {
+        backgroundColor: "transparent",
+        color: "var(--coral)",
+        border: "2px solid var(--coral)",
+      },
+    };
+
+    return { ...baseStyle, ...variantStyles[variant] };
   };
 
   return (
@@ -58,11 +89,12 @@ export default function Button({
       onClick={handleClick}
       aria-label={ariaLabel}
       className={getButtonClasses()}
+      style={getButtonStyle()}
       disabled={disabled}
     >
       {ripple && (
         <span
-          className="ripple-effect"
+          className="absolute rounded-full bg-white bg-opacity-30 pointer-events-none animate-ping"
           style={{
             left: ripple.left,
             top: ripple.top,

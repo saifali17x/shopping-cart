@@ -14,9 +14,9 @@ A modern, responsive e-commerce shopping cart application built with React and V
 - **Context API**: State management using React's Context API
 - **React Router**: Smooth navigation between pages
 
-## 📸 Screenshots
+## 🌐 Live Demo
 
-_(Placeholder - Add screenshots of your application here)_
+**[https://shopping-cart-lovat-rho.vercel.app/](https://shopping-cart-lovat-rho.vercel.app/)**
 
 ## 🛠️ Technologies Used
 
@@ -57,7 +57,7 @@ shopping-cart/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/shopping-cart.git
+   git clone https://github.com/saifali17x/shopping-cart.git
    cd shopping-cart
    ```
 
@@ -141,7 +141,7 @@ Contains sample product data used throughout the application.
 
 ## 👥 Contributors
 
-- Your Name - [GitHub Profile](https://github.com/saifali17x)
+- Saif Ali - [GitHub Profile](https://github.com/saifali17x)
 
 ---
 
